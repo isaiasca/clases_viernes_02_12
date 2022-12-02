@@ -1,0 +1,26 @@
+-- EJERCICIO 3:
+
+-- Usamos la base de datos world
+USE world;
+
+-- Primero llamamos a delimiter
+DELIMITER $$
+
+-- Create un procedimiento almacenado que se llama mostrar_nombre_pais_idioma
+CREATE PROCEDURE mostrar_nombre_pais_idioma()
+BEGIN
+
+-- Llamamos un select para seleccionar las tablas city que cambiamos su nombre a CI
+-- , country que cambiamos su nombre a CO y countrylanguage que cambiamos su nombre a COL
+-- usamos INNER JOIN  para enlazar las tablas 
+
+SELECT CO.Name AS pais, CI.Name AS ciudad, COL.Language AS idioma FROM city AS CI
+INNER JOIN country AS CO ON CO.Code = CI.CountryCode
+INNER JOIN countrylanguage AS COL ON CO.Code = COL.CountryCode;
+
+-- Llamamos end para finalizar 
+END$$
+
+-- Ejecutamos el procedimiento almacenado con call primero se llama la database y luego se pone el nombre del 
+-- procedimiento almacenado(mostrar_nombre_pais_idioma)
+CALL world.mostrar_nombre_pais_idioma();
