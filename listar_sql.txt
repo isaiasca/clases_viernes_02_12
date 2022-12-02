@@ -1,0 +1,40 @@
+-- Ejercio 1: 
+-- Cree un procedimiento almacenado para enlistar las ciudades
+
+-- Usamos la base de datos world
+USE world;
+-- Primero llamamos a delimiter
+DELIMITER $$
+-- Create un procedimiento almacenado que se listar_city_2
+CREATE PROCEDURE listar_city_2()
+BEGIN
+-- Utilizamos select para poder llamar a la tabla country 
+SELECT * FROM city WHERE ID;
+-- Llamamos end para finalizar 
+END$$
+
+-- Ejecutamos el procedimiento almacenado con call primero se llama la database y luego se pone el nombre del 
+-- procedimiento almacenado(listar_city_2)
+CALL world.listar_city_2();
+
+----------------------------------------------------------------
+
+-- Ejercicio 2:
+-- Cree un procedimiento almacenado para buscar un país por su nombre
+
+-- Usamos la base de datos world
+USE world;
+-- Primero llamamos a delimiter
+DELIMITER $$
+-- Create un procedimiento almacenado que se llama buscar_name_2
+-- Ingresamos un parámetro de entrada
+CREATE PROCEDURE buscar_name_2(IN nom_pais VARCHAR(25))
+BEGIN
+-- Utilizamos select para poder llamar a la columna Name de la tabla country 
+SELECT Name AS Nombre_pais FROM country where Name = nom_pais;
+-- Llamamos end para finalizar 
+END $$
+
+-- Ejecutamos el procedimiento almacenado con call primero se llama la database y luego se pone el nombre del 
+-- procedimiento almacenado(buscar_name_2)
+CALL world.buscar_name_2('aruba');
