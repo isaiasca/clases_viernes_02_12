@@ -1,0 +1,18 @@
+-- Ejercicio 5:
+
+-- USAMOS la base de datos friday_2_12
+USE friday_2_12;
+-- Primero llamamos a delimiter
+DELIMITER $$
+-- Create un procedimiento almacenados que se llama escribir_id
+CREATE PROCEDURE escribir_id (IN id_orden INTEGER)
+BEGIN
+-- Utilizamos select para mostrar los datos 
+SELECT orders.OrderID, employees.FirstName AS NOMBRE, employees.LastName AS APELLIDO, customers.CompanyName AS COMPANIA FROM employees
+INNER JOIN orders ON employees.EmployeeID = orders.EmployeeID
+INNER JOIN customers ON orders.CustomerID = customers.CustomerID
+WHERE orders.OrderID LIKE id_orden;
+-- Llamamos end para finalizar
+END$$
+-- Ejecutamos con call 
+CALL friday_2_12.escribir_id(10248);
